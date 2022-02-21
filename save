@@ -1,0 +1,28 @@
+        for i in namesPaci:
+            self.pacient.addItem(i)
+            print(i)
+
+
+
+        namesDoc =  getNanesDoctor(con)
+        namesPaci = getNanesPacient(con)
+        for i in namesDoc:
+            self.doctor.addItem(i)
+
+def getNanesPacient(con):
+    cur = con.cursor()
+    cur.execute("SELECT * FROM pacient")
+    rows = cur.fetchall()
+    names = []
+    for i in rows:
+        names.append("{} {} {}".format(i["fname"], i["lname"], i["patronymic"]))
+    print(names)
+    return names
+def getNanesDoctor(con):
+    cur = con.cursor()
+    cur.execute("SELECT * FROM doctor")
+    rows = cur.fetchall()
+    names = []
+    for i in rows:
+        names.append("{} {} {}".format(i["fname"], i["lname"], i["patronymic"]))
+    return names
